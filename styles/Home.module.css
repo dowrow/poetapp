@@ -1,40 +1,44 @@
 .container {
   min-height: 100vh;
-  padding: 0 0.5rem;
+  padding: 40px 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .title {
+  text-align: center;
   font-size: 4em;
   margin: 0 auto;
   line-height: 1.3333;
 }
 
 .description {
-  font-size: 1.2em;
+  font-size: 16px;
+  text-align: center;
   line-height: 1.3333;
-  margin: 0 auto 2em;
+  margin: 0 auto 20px;
 }
 
 .styleLabel {
   margin-bottom: 0.5em;
+  font-size: 14px;
 }
 
 .style {
-  margin-bottom: 50px;
-  font-size: 1.2em;
-  padding: 0.3em;
+  margin-bottom: 40px;
+  font-size: 16px;
+  padding: 8px 20px;
 }
 
 .poem {
   max-width: 24ch;
-  margin-bottom: 50px;
-  font-size: 2em;
+  margin-bottom: 40px;
+  font-size: 24px;
   line-height: 1.3333;
+  font-style: italic;
 }
 
 .poem:first-letter {
