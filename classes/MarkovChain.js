@@ -23,6 +23,8 @@ export default class MarkovChain {
         }
       });
     });
+
+    console.table(this.wordMap);
   }
 
   generateText(numberOfWords) {

@@ -7,7 +7,7 @@ import MarkovChain from '../classes/MarkovChain';
 import poemasJuanRamon from '../data/JuanRamon';
 import poemasLorca from '../data/Lorca';
 import poemasBecquer from '../data/Becquer';
-
+import cancionesMontefusco from '../data/EnricMontefusco';
 import stopWords from '../data/StopWords';
 
 const writtingStyles = [
@@ -24,8 +24,17 @@ const writtingStyles = [
     texts: poemasJuanRamon,
   },
   {
+    name: 'Enric Montefusco',
+    texts: cancionesMontefusco,
+  },
+  {
     name: 'Mixto',
-    texts: [].concat.apply([], [poemasLorca, poemasBecquer, poemasJuanRamon])
+    texts: [].concat.apply([], [
+      poemasLorca, 
+      poemasBecquer, 
+      poemasJuanRamon,
+      cancionesMontefusco,
+    ]),
   }
 ];
 
@@ -77,7 +86,7 @@ export default function Home() {
         {poem}
       </article>
       <button className={styles.button} onClick={generatePoem}>
-        ✨ Generar estrofa ✨
+        ✨ Generar texto ✨
       </button>
     </div>
   )
