@@ -8,6 +8,8 @@ import poemasJuanRamon from '../data/JuanRamon';
 import poemasLorca from '../data/Lorca';
 import poemasBecquer from '../data/Becquer';
 import cancionesMontefusco from '../data/EnricMontefusco';
+import cancionesKinderMalo from '../data/KinderMalo';
+
 import stopWords from '../data/StopWords';
 
 const writtingStyles = [
@@ -26,6 +28,10 @@ const writtingStyles = [
   {
     name: 'Enric Montefusco',
     texts: cancionesMontefusco,
+  },
+  {
+    name: 'Kinder Malo',
+    texts: cancionesKinderMalo,
   },
   {
     name: 'Mixto',

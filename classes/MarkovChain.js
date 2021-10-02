@@ -1,4 +1,4 @@
-const TOKENS = /[,.;:-_–¡!¿?"»()+{}<>(\r\n|\n|\r)]/gm;
+const TOKENS = /[,.;:-_–¡!¿?"'»()+{}<>(\r\n|\n|\r)]/gm;
 
 function cleanWord(word) {
   return word.toLowerCase().replace(TOKENS, '');
@@ -10,16 +10,14 @@ export default class MarkovChain {
     this.order = order;
 
     texts.forEach((text) => {
-      const words = text.split(/\s+/);
+      const words = text.split(/\s+/).map((word) => cleanWord(word));
 
       words.forEach((word, i) => {
-        let formattedWord = cleanWord(word);
-
-        if (!this.wordMap[formattedWord]) {
-          this.wordMap[formattedWord] = [];
+        if (!this.wordMap[word]) {
+          this.wordMap[word] = [];
         }
         if (words[i + 1]) {
-          this.wordMap[formattedWord].push(cleanWord(words[i + 1]));
+          this.wordMap[word].push(cleanWord(words[i + 1]));
         }
       });
     });
