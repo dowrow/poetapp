@@ -5,39 +5,46 @@ function cleanWord(word) {
 }
 
 export default class MarkovChain {
-  constructor(texts, order) {
+  constructor(texts, order = 1) {
     this.wordMap = {};
     this.order = order;
 
     texts.forEach((text) => {
       const words = text.split(/\s+/).map((word) => cleanWord(word));
-
-      words.forEach((word, i) => {
-        if (!this.wordMap[word]) {
-          this.wordMap[word] = [];
+      
+      for (let i = 0; i < (words.length - this.order); i++) {
+        const key = words.slice(i, i + this.order).join(' ');
+        if (!this.wordMap[key]) {
+          this.wordMap[key] = [];
         }
-        if (words[i + 1]) {
-          this.wordMap[word].push(cleanWord(words[i + 1]));
-        }
-      });
+        this.wordMap[key].push(words[i + this.order]);
+      }
     });
 
-    console.table(this.wordMap);
+    this.wordMap = Object.keys(this.wordMap).sort().reduce(
+      (obj, key) => { 
+        obj[key] = this.wordMap[key]; 
+        return obj;
+      }, 
+      {}
+    );
+    
+    console.log(this.wordMap);
   }
 
   generateText(numberOfWords) {
-    const words = Object.keys(this.wordMap);
-    let word = words[Math.floor(Math.random() * words.length)];
-    let result = '';
+    const keys = Object.keys(this.wordMap);
+    const textWords = keys[Math.floor(Math.random() * keys.length)].split(' ');
 
-    for (let i = 0; i < numberOfWords; i++) {
-      result += word + ' ';
-      word = this.wordMap[word][Math.floor(Math.random() * this.wordMap[word].length)];
-      if (!word || !this.wordMap.hasOwnProperty(word)) {
-        word = words[Math.floor(Math.random() * words.length)];
+    for (let i = 0; i < numberOfWords; i ++) {
+      const lastWords = textWords.slice(-1 * this.order).join(' ');
+
+      if (this.wordMap[lastWords]) {
+        let nextWord = this.wordMap[lastWords][Math.floor(Math.random() * this.wordMap[lastWords].length)];
+        textWords.push(nextWord);  
       }
     }
 
-    return result;
+    return textWords.join(' ');
   }
 }

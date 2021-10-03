@@ -40,6 +40,7 @@ const writtingStyles = [
       poemasBecquer, 
       poemasJuanRamon,
       cancionesMontefusco,
+      cancionesKinderMalo,
     ]),
   }
 ];
@@ -55,7 +56,7 @@ export default function Home() {
   }
 
   function generatePoem() {
-    const markovChain = new MarkovChain(writtingStyles[selectedStyle].texts);
+    const markovChain = new MarkovChain(writtingStyles[selectedStyle].texts, 2);
     let poem = markovChain.generateText(16);
 
     while(endsWithStopWord(poem)) {
